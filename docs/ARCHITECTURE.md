@@ -1,4 +1,4 @@
-# Architecture Design: LearnedRouting
+# Architecture Design: Deep Learning Traffic Engineering
 
 ## Module Overview
 
@@ -324,7 +324,7 @@ def plot_congestion_ratio(results: Dict[str, List[float]],
 ## File Structure
 
 ```
-LearnedRouting/
+Deep-Learning-Traffic-Engineering/
 ├── docs/
 │   ├── PAPER_ANALYSIS.md
 │   └── ARCHITECTURE.md

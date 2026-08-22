@@ -1,4 +1,4 @@
-# LearnedRouting — Deep RL for Intradomain Traffic Engineering
+# Deep Learning Traffic Engineering - Deep RL for Intradomain Traffic Engineering
 
 From-scratch reproduction of **"Learning To Route"** (Valadarsky, Shahaf,
 Schapira, Tamar — ACM HotNets 2017): an AI agent that learns how to route
@@ -165,7 +165,7 @@ Each failure produced a new permanent regression test.
 Requires Python ≥ 3.11. From the project root:
 
 ```bash
-cd ~/LearnedRouting
+cd ~/Deep-Learning-Traffic-Engineering
 
 python -m venv .venv
 .venv/bin/pip install --upgrade pip
