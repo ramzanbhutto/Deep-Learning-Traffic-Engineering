@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+nohup.out
+*.log
+
+# run outputs: track ONLY plots (.png) and metrics (.json), drop the rest
+results/**
+!results/**/
+!results/**/*.png
+!results/**/*.json
+
+results_smoke/**
+!results_smoke/**/
+!results_smoke/**/*.png
+!results_smoke/**/*.json

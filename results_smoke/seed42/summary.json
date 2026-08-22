@@ -1,0 +1,39 @@
+{
+  "gravity": {
+    "config": {
+      "num_nodes": 12,
+      "num_edges": 34,
+      "traffic_model": "gravity",
+      "sparsity": 0.3,
+      "elephant_frac": 0.4,
+      "target_lb": 0.5,
+      "sequence_mode": "iid",
+      "cyclic_q": 6,
+      "num_train_sequences": 7,
+      "num_test_sequences": 3,
+      "sequence_length": 40,
+      "history_k": 10,
+      "softmin_gamma": 2.0,
+      "reward_normalizer": "lp",
+      "hidden_dim": 128,
+      "lr": 0.0005,
+      "clip_eps": 0.2,
+      "entropy_coef": 0.01,
+      "update_epochs": 4,
+      "batch_size": 64,
+      "rl_gamma": 0.95,
+      "gae_lambda": 0.95,
+      "epochs": 20,
+      "eval_every": 5,
+      "seed": 42,
+      "outdir": "results_smoke/seed42/gravity"
+    },
+    "initial_agent_ratio": 1.703940753808484,
+    "final_agent_ratio": 1.726724456490992,
+    "prev_ratio": 1.7142342679413543,
+    "avgk_ratio": 1.695246470282114,
+    "oblivious_ratio": 1.5750357279777174,
+    "agent_delivered_min": 0.9990096861028568,
+    "wall_time_s": 50.7
+  }
+}
