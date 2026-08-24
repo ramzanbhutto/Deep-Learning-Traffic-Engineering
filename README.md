@@ -470,9 +470,13 @@ Findings:
 - **PPO improves monotonically through the entire paper-scale budget**,
   reaching 1.382 - better than every baseline including Oblivious - so
   Paper 1's method keeps paying off well past our headline 180-epoch runs.
-- The **stabilized DDPG stays numerically healthy at every length**
-  (critic loss never runs away again), confirming the gamma-0.9 +
-  reward-scaling + twin-critic bundle fixes the divergence permanently.
+- The **stabilized DDPG critic stays bounded at every gravity-sweep
+  length** (0.00-6.7 across 20-714 epochs). Caveat: stability did NOT
+  transfer to all regimes at 180 epochs - gravity_cyclic (482,807) and
+  bimodal (902) still grow exponentially, ~4-6 orders slower than plain
+  DDPG but not eliminated; bimodal_cyclic (0.0002) and gravity are
+  genuinely bounded. Details and ruled-out hypotheses:
+  `docs/PAPER_ANALYSIS_SDN_DDPG.md` §10b.
 - Its congestion performance saturates around 1.73-1.80 by epoch 180-360;
   longer training does not close the gap to PPO, because delay+loss
   optimization simply does not target worst-link utilization.

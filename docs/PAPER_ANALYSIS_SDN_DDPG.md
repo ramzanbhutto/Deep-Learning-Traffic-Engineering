@@ -237,20 +237,38 @@ toward reusing ours for the headline table and optionally adding InternetMCI
 Plain single-critic DDPG (Eqs. 18-21, faithfully implemented) diverges on
 gravity_cyclic - and everywhere else, at varying drift rates. Raw evidence:
 
-- lr = 3e-4 (our default): critic MSE grows exponentially from 74 (epoch 24)
-  to 1.87e9 (epoch 180); rewards bounded in [0,1] mean any correct Q must
-  lie in [0,100], so this is pure value explosion. U/U* drifted
-  monotonically 1.66 -> 1.84 across epochs 36-180 while delay and loss both
-  IMPROVED - the reward does not see what congestion sees.
-- lr = 1e-5 (paper value), full paper budget test: 714 epochs x
-  280 transitions = 199,920 steps (~200,000 iterations of Figure 5).
-  Critic loss still explodes: 0.22 -> 854,692 (3.8e6x growth). The policy
-  barely moves (U/U* flat at ~1.68), so "stable" here also means
-  "barely learning".
+- lr = 3e-4 (our default), gravity_cyclic: critic MSE grows exponentially
+  from 74 (epoch 24) to 1.87e9 (epoch 180); rewards bounded in [0,1] mean
+  any correct Q must lie in [0,100], so this is pure value explosion.
+  U/U* drifted monotonically 1.66 -> 1.84 across epochs 36-180 while delay
+  and loss both IMPROVED - the reward does not see what congestion sees.
+  (Loss trajectories for the other three plain regimes were not logged in
+  that era; their U/U* instability was visible but the divergence itself is
+  proven only for gravity_cyclic.)
+- lr = 1e-5 (paper value), full paper budget test on gravity_cyclic:
+  714 epochs x 280 transitions = 199,920 steps (~200,000 iterations of
+  Figure 5). Critic loss still explodes: 0.22 -> 854,692 (3.8e6x growth).
+  The policy barely moves (U/U* flat at ~1.68), so "stable" here also
+  means "barely learning".
 - Verdict: not our learning-rate deviation and not overfitting (train and
   test rewards improve together). It is the documented plain-DDPG
   single-critic bootstrap failure mode; the original authors either did not
   train into it or their exact configuration avoided it by chance.
+- IMPORTANT SCOPING: the full bundle does NOT eliminate divergence
+  everywhere. Measured critic_loss@end at 180 epochs with the bundle:
+  gravity 0.23 (rises then self-corrects), bimodal_cyclic 0.0002 (flat all
+  run) - genuinely bounded; gravity_cyclic 482,807 and bimodal 902 - still
+  exponential, roughly 3,900x-2,000,000x slower than plain but not
+  eliminated. Two obvious explanations are measured and ruled out: late
+  reward variability (gravity_cyclic std 6.2e-6 ~ gravity 7.8e-6) and
+  policy movement (gravity's test U/U* fluctuates MORE than the diverging
+  regimes yet its critic self-corrects). With one seed per regime we
+  cannot distinguish regime-intrinsic properties from seed draw; the
+  honest statement is that the bundle decelerates the instability by
+  3-6 orders of magnitude and eliminates it in some (regime, seed) cells,
+  but a complete fix likely requires changing the off-policy training
+  itself (shorter replay retention, n-step returns, or distributional
+  critic regularisation).
 
 Extension (explicitly NOT part of the reproduced method): twin critics with
 target-action smoothing (TD3, Fujimoto et al. 2018) - y uses
