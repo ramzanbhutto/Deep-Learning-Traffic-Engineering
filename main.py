@@ -100,8 +100,18 @@ def run_sdn_config(name: str, overrides: dict, outroot: str) -> dict:
     print(f"\n=== running SDN-DDPG config '{name}' -> {outdir} ===")
     trainer.run()
 
+    from eval.plot import plot_ddpg_training
     with open(Path(outdir) / "metrics.json") as f:
-        return json.load(f)
+        data = json.load(f)
+    model = params.get("traffic_model", "gravity")
+    extra = (f"p={params.get('sparsity')}" if model == "gravity"
+             else f"elephants={int(params.get('elephant_frac', 0.4) * 100)}%")
+    variant = "TD3" if params.get("use_twin_critics") else "paper-DDPG"
+    plot_ddpg_training(
+        data,
+        f"DDPG {variant}: {name} ({extra}, 180 epochs)",
+        str(Path(outdir) / "training_curves.png"))
+    return data
 
 
 def run_compare(configs, results_root: str, stride: int, force: bool,

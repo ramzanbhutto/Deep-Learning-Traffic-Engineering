@@ -56,9 +56,11 @@ def plot_comparison_grid(runs: Dict[str, Dict], save_path: str):
 
         cfg = data["config"]
         model = cfg["traffic_model"]
+        mode = "cyclic q={}".format(cfg.get("cyclic_q", 6)) \
+            if cfg.get("sequence_mode") == "cyclic" else "iid"
         extra = (f"p={cfg['sparsity']}" if model == "gravity"
                  else f"elephants={int(cfg['elephant_frac']*100)}%")
-        ax.set_title(f"{model} DMs ({extra})")
+        ax.set_title(f"{model} DMs ({extra}, {mode})")
         ax.set_xlabel("Learning epoch")
         ax.set_ylabel("Congestion ratio (U/U*)")
         ax.grid(True, alpha=0.3)
@@ -122,6 +124,72 @@ def plot_method_grid(all_results: Dict[str, Dict], save_path: str):
         ax.set_ylabel("Congestion ratio (U/U*)")
         ax.grid(True, axis="y", alpha=0.3)
 
+    fig.tight_layout()
+    path = Path(save_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    print(f"saved {path}")
+
+
+def plot_ddpg_training(data: Dict, title: str, save_path: str):
+    epochs = [e["epoch"] for e in data["history"]]
+    reward = [e["train_reward_mean"] for e in data["history"]]
+    ratio_eps, ratio = [], []
+    delay_eps, delay = [], []
+    loss_eps, loss = [], []
+    for e in data["history"]:
+        if "test_agent_ratio_mean" in e and np.isfinite(e["test_agent_ratio_mean"]):
+            ratio_eps.append(e["epoch"])
+            ratio.append(e["test_agent_ratio_mean"])
+        if "test_agent_delay_mean" in e and np.isfinite(e["test_agent_delay_mean"]):
+            delay_eps.append(e["epoch"])
+            delay.append(e["test_agent_delay_mean"])
+        if "test_agent_loss_fraction_mean" in e and np.isfinite(e["test_agent_loss_fraction_mean"]):
+            loss_eps.append(e["epoch"])
+            loss.append(e["test_agent_loss_fraction_mean"])
+
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.2))
+    axes[0].plot(epochs, reward, color="tab:purple", linewidth=1.5)
+    axes[0].set_title("Training reward R(s,a)", fontsize=10)
+    axes[1].plot(ratio_eps, ratio, marker="o", markersize=3, color="tab:blue")
+    axes[1].set_title("Test congestion ratio (U/U*)", fontsize=10)
+    axes[2].plot(loss_eps, loss, color="tab:red", linewidth=1.5, label="loss frac")
+    ax2 = axes[2].twinx()
+    ax2.plot(delay_eps, delay, color="tab:green", linewidth=1.2)
+    ax2.set_ylabel("mean delay (s)", fontsize=8)
+    axes[2].set_title("Packet loss + delay", fontsize=10)
+    axes[2].legend(loc="upper left", fontsize=7)
+
+    for ax in axes:
+        ax.set_xlabel("Learning epoch")
+        ax.grid(True, alpha=0.3)
+    fig.suptitle(title, fontsize=11)
+    fig.tight_layout()
+    path = Path(save_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    print(f"saved {path}")
+
+
+def plot_epoch_sweep(sweep_rows: list, save_path: str):
+    eps = [r["epochs"] for r in sweep_rows]
+    fig, ax = plt.subplots(figsize=(8.5, 5))
+    ax.plot(eps, [r["PPO"] for r in sweep_rows], marker="o",
+            color="tab:blue", label="PPO-softmin")
+    ax.plot(eps, [r["DDPG-TD3"] for r in sweep_rows], marker="s",
+            color="tab:purple", label="DDPG-SDN (TD3)")
+    ax.axhline(1.575, ls="--", c="tab:red", label="Oblivious (180-ep ref)")
+    ax.set_xscale("log")
+    ax.set_xticks(eps)
+    ax.set_xticklabels([str(e) for e in eps])
+    ax.get_xaxis().set_minor_locator(matplotlib.ticker.NullLocator())
+    ax.set_xlabel("Training epochs (log scale)")
+    ax.set_ylabel("Congestion ratio (U/U*)")
+    ax.set_title("Epoch sweep - gravity regime", fontsize=11)
+    ax.grid(True, alpha=0.3, which="both")
+    ax.legend(fontsize=9)
     fig.tight_layout()
     path = Path(save_path)
     path.parent.mkdir(parents=True, exist_ok=True)

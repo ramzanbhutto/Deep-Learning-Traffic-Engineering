@@ -80,15 +80,18 @@ ratios - a massive output-space compression that makes learning feasible.
 12-node/34-edge topology · k=10 · γ=2 · PPO 80 epochs · exact-LP normalized
 ratio on held-out test windows (mean U/U*, lower is better):
 
-Both methods here are trained 180 epochs (see §7c for what epochs change).
-Values are mean U/U* over test windows through the shared evaluation stack:
+Both methods here are trained 180 epochs (see §7c/§7d for what epochs
+change). Values = each run's own final evaluation over ALL test windows
+(this matches the embedded per-regime figures below); §7b uses the
+stride-2 five-method protocol, so its numbers differ slightly on cyclic
+regimes - both are raw, neither is hand-adjusted:
 
 | Traffic family            | Agent | Prev  | Avg_k | Oblivious |
 |---------------------------|-------|-------|-------|-----------|
-| Gravity, iid, p=0.3       | **1.591** | 1.706 | 1.753 | 1.575 |
-| Gravity, cyclic q=6       | **1.620** | 1.839 | 1.660 | 1.560 |
-| Bimodal 40%, iid          | **1.295** | 1.471 | 1.231 | 1.258 |
-| Bimodal 40%, cyclic q=6   | **1.442** | 1.629 | 1.387 | 1.402 |
+| Gravity, iid, p=0.3       | **1.587** | 1.706 | 1.753 | 1.575 |
+| Gravity, cyclic q=6       | **1.470** | 1.654 | 1.546 | 1.533 |
+| Bimodal 40%, iid          | **1.281** | 1.471 | 1.288 | 1.305 |
+| Bimodal 40%, cyclic q=6   | **1.344** | 1.396 | 1.312 | 1.281 |
 
 **The learned policy beats Prev in all four regimes** - reproducing the
 paper's central claim. On unpredictable (iid) traffic no history-method can
@@ -121,52 +124,100 @@ baselines (constant by definition). Y-axis = congestion ratio U/U*.
 ## 3. How It Was Made
 
 Built incrementally, one module per step, each proven correct **before**
-building the next thing on top of it:
+building the next thing on top of it - separately for each paper, against
+shared foundations.
 
 ```
-Phase 0  read the paper → docs/PAPER_ANALYSIS_LEARNING_TO_ROUTE.md
-Phase 1  design modules → docs/ARCHITECTURE_LEARNING_TO_ROUTE.md
-Phase 2  graph → traffic → routing → baselines → agent → train → eval
-         (each module ships with its own sanity-test script)
-Phase 3  train on 4 traffic regimes → plots + README (this file)
+Paper 1 (Learning-To-Route)
+  Phase 0  read the paper -> docs/PAPER_ANALYSIS_LEARNING_TO_ROUTE.md
+  Phase 1  design modules -> docs/ARCHITECTURE_LEARNING_TO_ROUTE.md
+  Phase 2  graph -> traffic -> softmin_routing -> baselines -> agent
+           -> train -> eval   (each ships its own sanity-test script)
+  Phase 3  train on 4 traffic regimes -> plots + README
+
+Paper 2 (SDN-DDPG)
+  Phase 0  read the paper -> docs/PAPER_ANALYSIS_SDN_DDPG.md
+  Phase 1  design modules -> docs/ARCHITECTURE_SDN_DDPG.md
+  Phase 2  queue_model -> reward -> forwarding -> agent -> environment
+           -> train -> comparison
+  Phase 3  train all 4 regimes -> five-method comparison vs Paper 1
+           + classical baselines -> README
 ```
 
-Module-by-module, with what each had to prove before moving on:
+### Paper 1 - what each module had to prove standalone
 
-| Step | Module | Had to demonstrate standalone |
+| Step | Module | Had to demonstrate |
 |---|---|---|
-| 1 | `graph/` | Dijkstra matches hand-computed distances on known graphs; topology fully connected; edge↔index mapping consistent |
-| 2 | `traffic/` | gravity model deterministic; bimodal has exactly two demand levels with 10× ratio and correct elephant fraction; sparsify keeps ~p share of pairs; cyclic sequences repeat with exact period |
-| 3 | `routing/` | softmin ratios sum to 1 per neighbor-set and zero elsewhere; γ→∞ recovers shortest-path routing; line graph carries exactly 10 units along 3 edges; symmetric diamond splits 50/50; weighted diamond tilts to the analytically predicted e⁻⁴/(e⁻⁴+e⁻⁶) split |
-| 4 | `baselines/` | Prev recovers the *exact* optimum on a symmetric diamond; Avg_k consistent with Prev on stationary history; Oblivious achieves ratio 1.000 on its own scenarios |
+| 1 | `graph/` | Dijkstra matches hand-computed distances on known graphs; topology fully connected; edge-index mapping consistent |
+| 2 | `traffic/` | gravity model deterministic; bimodal has exactly two demand levels with 10x ratio and correct elephant fraction; sparsify keeps ~p share of pairs; cyclic sequences repeat with exact period |
+| 3 | `softmin_routing/` | ratios sum to 1 per neighbor-set and zero elsewhere; gamma->infinity recovers shortest-path routing; line graph carries exactly 10 units along 3 edges; symmetric diamond splits 50/50; weighted diamond tilts to the analytically predicted split |
+| 4 | `baselines/` | Prev recovers the exact optimum on a symmetric diamond; Avg_k consistent with Prev on stationary history; Oblivious achieves ratio 1.000 on its own scenarios |
 | 5 | `agent/` | GAE returns match hand-computed discounted sums; PPO update shifts the policy toward rewarded actions in a synthetic bandit |
 | 6 | `train/` | end-to-end mini-run finishes with finite metrics, saved artifacts, baseline caching works |
 | 7 | `eval/` | extracts curves from `metrics.json`, renders Figure-2-style panels |
 
-### Bugs the tests caught (never shown anyone else)
+### Paper 2 - what each module had to prove standalone
 
-These were real failures discovered *because* each module carried proofs:
+| Step | Module | Had to demonstrate |
+|---|---|---|
+| 1 | `queue_model/` | Eqs.(1)-(3) match a hand-worked toy switch (rho=0.5, K=4 gives Pb=1/31, E[N]=26/31, E[d]=26/15); rho=0 and rho=1 branches; monotone loss; finite at paper scale (K=10000) |
+| 2 | `reward/` | rewards bounded in [0,1] under random stress; zero-traffic and saturation clamps; alpha interpolation endpoints |
+| 3 | `forwarding/` | reconstructed paths cost exactly what Dijkstra says (random weights, 150 flows); ATVM mass conservation on a line graph; upstream loss shrinks downstream rates; uniform weights reproduce hop-count routing |
+| 4 | `agent/` | actor output confined to [w_min,w_max]; target soft-update arithmetic exact at tau=1, 0.25, 0; OU noise reproducible after reset and mean-reverting; ring-buffer eviction; synthetic-bandit convergence |
+| 5 | `environment/` | finite step outputs; uniform weights give hop-count paths; loss monotone in offered load; state depends on previous action |
+| 6 | `train/` | rate calibration lands hotspot rho at 0.90; mini-run finite with artifacts; deterministic evaluation repeatable |
+| 7 | `comparison/` | rebuilds bit-identical test streams for both methods (asserted), stamps stride+variant, refuses mismatched reruns |
+
+### Bugs the tests caught
+
+Paper 1:
 
 1. **OPT linear program** - capacity rows were written per-commodity instead
    of per-edge aggregates. Single-commodity toy cases passed perfectly while
-   real cases returned an "optimum" *below a provable cut lower bound*.
-   Fixed by building the constraint matrix as E aggregated rows.
-2. **Dijkstra dtype bug** - distances stored as float32 while relaxations
-   pushed float64 values; when float32 rounded down, the stale-entry guard
-   fired on a node's *first legitimate visit* and silently skipped expanding
-   it, manufacturing unreachable nodes. Fix: float64 throughout.
-3. **NumPy broadcasting misalignment** - a `(u,d)` selection mask inside
-   `np.where` broadcast against `(u,v,d)` ratio tensors, aligning its axes to
-   the wrong dimensions and inverting splitting ratios. One-character-class
-   fix (`has_mass[:, None, :]`).
-4. **Transpose bug in flow propagation** - traffic was initialized
-   source-major where the propagator expected destination-major; nothing
-   ever moved until delivered-fraction assertions failed.
+   real cases returned an "optimum" below a provable cut lower bound.
+2. **Dijkstra dtype bug** - float32 distance storage plus float64
+   relaxations let the stale-entry guard fire on a node's first legitimate
+   visit, silently manufacturing unreachable nodes. Fix: float64 throughout.
+3. **NumPy broadcasting misalignment** - a (u,d) mask inside np.where
+   broadcast against (u,v,d) tensors along the wrong axis, inverting
+   splitting ratios. Fix: restore the missing axis.
+4. **Transpose bug in flow propagation** - traffic initialized source-major
+   where the propagator expected destination-major; nothing moved until
+   delivered-fraction assertions failed.
 5. **Sign bug in the LP incidence matrix** - supply convention contradicted
-   the inflow/outflow encoding, making trivially feasible problems
-   "infeasible".
+   the inflow/outflow encoding, making feasible problems "infeasible".
 
-Each failure produced a new permanent regression test.
+Paper 2:
+
+1. **Shortest-path reconstruction concept error** - greedy next-hop descent
+   on source-rooted distances walks back through predecessors and
+   oscillates; correct descent needs distances TO the destination. Fixed by
+   running Dijkstra on a reversed copy of the graph per unique destination
+   - caught by path-cost-vs-Dijkstra assertions.
+2. **M/M/1/K overflow form** - computing rho**K directly overflows for
+   rho>1 and loses precision near rho=1; the stable form multiplies through
+   by rho^-(K+1). Caught by the paper-scale (K=10000) test.
+3. **Non-monotone delay physics** - a test asserted delay rises with
+   offered load; M/M/1/K delay actually peaks near rho=1 (admitted
+   throughput collapses) then falls as blocking sheds arrivals. The test
+   was wrong, not the code - rewritten to document the real behavior.
+4. **OU noise reset** - reset() restored the state vector but not the RNG
+   cursor, so episodes were not reproducible. Caught by a reset-and-compare
+   assertion.
+5. **Silently dropped config fields** - DDPGConfig lacked
+   sequence_mode/cyclic_q, so the "cyclic" DDPG runs quietly trained on
+   iid traffic. Caught by the comparison harness's stream-identity
+   assertion, then fixed and retrained.
+6. **Output-path collision** - both trainers wrote to the same results
+   directories; DDPG runs overwrote Paper-1 artifacts. Fixed with
+   per-paper suffixes; the incident also produced the stride/variant
+   stamping + refusal guard on comparison.json.
+
+Paper 2 additionally required a training-stability investigation: plain
+DDPG's critic loss diverges exponentially at any learning rate (full
+evidence and the twin-critic + reward-scaling + gamma fix in §10b of
+`docs/PAPER_ANALYSIS_SDN_DDPG.md` and §7c here). Every failure above
+ended as a permanent regression test.
 
 ---
 
@@ -190,7 +241,7 @@ python -m venv .venv
 
 ## 5. Verify (run the test suites)
 
-Every module has a self-contained proof script. Run all six:
+Every module has a self-contained proof script. Run all:
 
 ```bash
 export PYTHONPATH=".:Learning-To-Route:SDN-DDPG"
@@ -300,12 +351,13 @@ results/seed42/
 │   ├── metrics.json                  ← config echo + full learning curve
 │   ├── checkpoint.pt                 ← PPO policy + demand_scale
 │   └── congestion_ratio.png
-├── <regime>_sdn/                     ← Paper 2, paper-faithful DDPG artifacts
-│   └── metrics.json / checkpoint.pt
-└── <regime>_sdn_td3/                 ← Paper 2, stabilized variant (--td3)
-
-epstudy/e<N>/seed42/                   ← epoch-sweep runs (§7d): e20..e714,
-                                          PPO + DDPG-TD3 at each length
+├── <regime>_sdn/                     ← Paper 2, paper-faithful DDPG
+│   ├── metrics.json / checkpoint.pt
+│   └── training_curves.png           ← reward, U/U*, delay+loss panels
+├── <regime>_sdn_td3/                 ← stabilized variant (--td3), same contents
+│   └── training_curves.png
+├── epstudy/e<N>/seed42/              ← epoch-sweep runs (§7d): e20..e714
+└── epstudy/epoch_sweep_curves.png    ← sweep trajectories, both methods
 ```
 (`<regime>` ∈ gravity, gravity_cyclic, bimodal, bimodal_cyclic)
 (`<regime>` ∈ gravity, gravity_cyclic, bimodal, bimodal_cyclic)
@@ -338,9 +390,12 @@ reruns are refused without `--force`.
 | bimodal 40% iid         | 1.295 | 2.293 | 1.471 | **1.231** | 1.258 |
 | bimodal 40% cyclic q=6  | 1.442 | 2.099 | 1.629 | **1.387** | 1.402 |
 
+![Stabilized DDPG training curves](results/seed42/gravity_cyclic_sdn_td3/training_curves.png)
+
 Plain-Diverged-DDPG reference (same protocol, unstable critic - DO NOT
 trust as a converged method): gravity 2.040 | gravity_cyclic 2.129 |
-bimodal 1.749 | bimodal_cyclic 1.646.
+bimodal 1.749 | bimodal_cyclic 1.646. Its per-run curves live in
+`results/seed42/<regime>_sdn/`.
 
 ![Five-method comparison](results/seed42/five_method_combined.png)
 
@@ -421,6 +476,8 @@ Findings:
 - Its congestion performance saturates around 1.73-1.80 by epoch 180-360;
   longer training does not close the gap to PPO, because delay+loss
   optimization simply does not target worst-link utilization.
+
+![Epoch sweep](results/seed42/epstudy/epoch_sweep_curves.png)
 
 Raw per-run metrics: `results/seed42/epstudy/e<N>/seed42/`, summary in
 `results/seed42/epstudy/summary.json`.

@@ -254,9 +254,15 @@ gravity_cyclic - and everywhere else, at varying drift rates. Raw evidence:
 
 Extension (explicitly NOT part of the reproduced method): twin critics with
 target-action smoothing (TD3, Fujimoto et al. 2018) - y uses
-min(Q1', Q2') over smoothed target actions. Enabled via `--td3`
-(checkpoint dirs `<regime>_sdn_td3`); plain DDPG remains the default and
-its artifacts stay untouched for comparison.
+min(Q1', Q2') over smoothed target actions - PLUS two stability measures
+found necessary by the experiments above: reward scaling x0.01 (pulls the
+bootstrap fixed point from Q*~99 down to ~1) and discount gamma 0.9
+instead of 0.99 (shortens bootstrap chains through the replay buffer).
+Enabled via `--td3` (checkpoint dirs `<regime>_sdn_td3`); plain DDPG
+remains the default and its artifacts stay untouched for comparison.
+With the full bundle the critic stays bounded at every training length
+tested (up to the 200k-step paper budget); with any subset removed it
+still explodes on at least one regime.
 
 ## 11. Additions beyond the source plan (self-directed)
 

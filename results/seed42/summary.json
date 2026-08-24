@@ -1,0 +1,106 @@
+{
+  "gravity": {
+    "ppo": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.587,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    },
+    "sdn-ddpg-paper": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.996,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    },
+    "sdn-ddpg-td3": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.798,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    }
+  },
+  "gravity_cyclic": {
+    "ppo": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.47,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    },
+    "sdn-ddpg-paper": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.844,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    },
+    "sdn-ddpg-td3": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.848,
+      "config": {
+        "traffic_model": "gravity",
+        "sparsity": 0.3
+      }
+    }
+  },
+  "bimodal": {
+    "ppo": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.281,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    },
+    "sdn-ddpg-paper": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.724,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    },
+    "sdn-ddpg-td3": {
+      "epochs": 180,
+      "final_U_over_Ustar": 2.326,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    }
+  },
+  "bimodal_cyclic": {
+    "ppo": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.344,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    },
+    "sdn-ddpg-paper": {
+      "epochs": 180,
+      "final_U_over_Ustar": 1.576,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    },
+    "sdn-ddpg-td3": {
+      "epochs": 180,
+      "final_U_over_Ustar": 2.118,
+      "config": {
+        "traffic_model": "bimodal",
+        "sparsity": 1.0
+      }
+    }
+  }
+}
