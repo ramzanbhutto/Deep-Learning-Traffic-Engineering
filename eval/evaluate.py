@@ -23,8 +23,7 @@ def extract_learning_curves(data: Dict) -> Dict[str, List[float]]:
         baselines = {
             "Prev": (final["test_prev_ratio_mean"], final.get("test_prev_ratio_std", 0.0)),
             "Avg_k": (final["test_avgk_ratio_mean"], final.get("test_avgk_ratio_std", 0.0)),
-            "Oblivious": (final["test_oblivious_ratio_mean"],
-                          final.get("test_oblivious_ratio_std", 0.0)),
+            "Oblivious": (final["test_oblivious_ratio_mean"], final.get("test_oblivious_ratio_std", 0.0)),
         }
     return {"epochs": epochs, "agent": agent, "baselines": baselines}
 
@@ -38,8 +37,7 @@ def summarize_run(data: Dict) -> Dict:
     return {
         "config": data["config"],
         "initial_agent_ratio": first_agent,
-        "final_agent_ratio": final.get("final_agent_ratio_mean",
-                                       curves["agent"][-1] if curves["agent"] else None),
+        "final_agent_ratio": final.get("final_agent_ratio_mean", curves["agent"][-1] if curves["agent"] else None),
         "prev_ratio": final.get("final_prev_ratio_mean"),
         "avgk_ratio": final.get("final_avgk_ratio_mean"),
         "oblivious_ratio": final.get("final_oblivious_ratio_mean"),

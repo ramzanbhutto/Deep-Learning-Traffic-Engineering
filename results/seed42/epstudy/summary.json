@@ -1,0 +1,38 @@
+[
+  {
+    "epochs": 20,
+    "PPO": 1.727,
+    "DDPG-TD3": 2.095,
+    "DDPG_critic_end": 0.0
+  },
+  {
+    "epochs": 60,
+    "PPO": 1.632,
+    "DDPG-TD3": 1.921,
+    "DDPG_critic_end": 0.139
+  },
+  {
+    "epochs": 120,
+    "PPO": 1.611,
+    "DDPG-TD3": 1.911,
+    "DDPG_critic_end": 6.734
+  },
+  {
+    "epochs": 180,
+    "PPO": 1.587,
+    "DDPG-TD3": 1.798,
+    "DDPG_critic_end": 0.228
+  },
+  {
+    "epochs": 360,
+    "PPO": 1.434,
+    "DDPG-TD3": 1.729,
+    "DDPG_critic_end": 0.002
+  },
+  {
+    "epochs": 714,
+    "PPO": 1.382,
+    "DDPG-TD3": 1.974,
+    "DDPG_critic_end": 0.0
+  }
+]

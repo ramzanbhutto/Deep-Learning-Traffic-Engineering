@@ -1,0 +1,1638 @@
+{
+  "config": {
+    "traffic_model": "bimodal",
+    "sparsity": 1.0,
+    "elephant_frac": 0.4,
+    "target_lb": 0.5,
+    "sequence_mode": "cyclic",
+    "cyclic_q": 6,
+    "num_train_sequences": 7,
+    "num_test_sequences": 3,
+    "sequence_length": 40,
+    "service_rate": 3000.0,
+    "buffer_capacity": 10000,
+    "alpha": 0.9,
+    "weight_low": 1.0,
+    "weight_high": 5.0,
+    "target_hotspot_rho": 0.9,
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "actor_lr": 0.0003,
+    "critic_lr": 0.0003,
+    "gamma": 0.99,
+    "tau": 0.005,
+    "buffer_capacity_rl": 50000,
+    "batch_size": 100,
+    "warmup_steps": 100,
+    "update_every": 2,
+    "noise_sigma": 0.15,
+    "use_twin_critics": false,
+    "target_policy_noise": 0.2,
+    "target_noise_clip": 0.5,
+    "reward_scale": 1.0,
+    "epochs": 180,
+    "eval_every": 6,
+    "seed": 42,
+    "outdir": "results/seed42/bimodal_cyclic_sdn"
+  },
+  "method": "sdn-ddpg",
+  "history": [
+    {
+      "epoch": 1,
+      "train_reward_mean": 0.9951654078666743,
+      "train_delay_mean": 0.09964979661635325,
+      "train_loss_mean": 0.0035035128558976504,
+      "critic_loss_mean": 0.06747843749665966,
+      "policy_loss_mean": -1.6524005062050289
+    },
+    {
+      "epoch": 2,
+      "train_reward_mean": 0.9947899441773188,
+      "train_delay_mean": 0.10973929591433851,
+      "train_loss_mean": 0.0027178750653579394,
+      "critic_loss_mean": 0.13027547193425043,
+      "policy_loss_mean": -2.5158231598990306
+    },
+    {
+      "epoch": 3,
+      "train_reward_mean": 0.9920923378956534,
+      "train_delay_mean": 0.1839190849348823,
+      "train_loss_mean": 0.005054155816021374,
+      "critic_loss_mean": 0.16222216415085963,
+      "policy_loss_mean": -3.692925420829228
+    },
+    {
+      "epoch": 4,
+      "train_reward_mean": 0.9956347361199913,
+      "train_delay_mean": 0.08970580838879239,
+      "train_loss_mean": 0.0032850250251302586,
+      "critic_loss_mean": 0.3099929715905871,
+      "policy_loss_mean": -5.113924292155675
+    },
+    {
+      "epoch": 5,
+      "train_reward_mean": 0.9956253764818689,
+      "train_delay_mean": 0.09023541084333304,
+      "train_loss_mean": 0.003140300301811017,
+      "critic_loss_mean": 0.5812128550772157,
+      "policy_loss_mean": -6.522896862030029
+    },
+    {
+      "epoch": 6,
+      "train_reward_mean": 0.9957049376962303,
+      "train_delay_mean": 0.08942356210108286,
+      "train_loss_mean": 0.002710020092210474,
+      "critic_loss_mean": 0.9867813091192926,
+      "policy_loss_mean": -8.034542768342154,
+      "test_agent_reward_mean": 0.9962468243074941,
+      "test_agent_delay_mean": 0.07612183735445238,
+      "test_agent_loss_fraction_mean": 0.0032769301155551283,
+      "test_agent_throughput_mean": 11616.798192784536,
+      "test_agent_ratio_mean": 1.551123999837266
+    },
+    {
+      "epoch": 7,
+      "train_reward_mean": 0.9961424880265597,
+      "train_delay_mean": 0.07940702042753901,
+      "train_loss_mean": 0.0028422565441775464,
+      "critic_loss_mean": 1.3867848683680808,
+      "policy_loss_mean": -9.531418071474349
+    },
+    {
+      "epoch": 8,
+      "train_reward_mean": 0.9959821512304984,
+      "train_delay_mean": 0.08259951231653984,
+      "train_loss_mean": 0.003008707152572933,
+      "critic_loss_mean": 2.036954328417778,
+      "policy_loss_mean": -11.155047464370728
+    },
+    {
+      "epoch": 9,
+      "train_reward_mean": 0.9961524076772621,
+      "train_delay_mean": 0.0793440119514665,
+      "train_loss_mean": 0.00277111784921965,
+      "critic_loss_mean": 2.528088666498661,
+      "policy_loss_mean": -12.596569762911116
+    },
+    {
+      "epoch": 10,
+      "train_reward_mean": 0.9953469588628999,
+      "train_delay_mean": 0.09463597380061753,
+      "train_loss_mean": 0.003944223160724218,
+      "critic_loss_mean": 3.1900245783584458,
+      "policy_loss_mean": -14.360354239600046
+    },
+    {
+      "epoch": 11,
+      "train_reward_mean": 0.9957046110105888,
+      "train_delay_mean": 0.08970880737829742,
+      "train_loss_mean": 0.0025849265738793724,
+      "critic_loss_mean": 4.067173564434052,
+      "policy_loss_mean": -15.852773557390485
+    },
+    {
+      "epoch": 12,
+      "train_reward_mean": 0.9955891984879927,
+      "train_delay_mean": 0.09029939870382142,
+      "train_loss_mean": 0.0034732857033532515,
+      "critic_loss_mean": 4.612240614848478,
+      "policy_loss_mean": -16.892223746435985,
+      "test_agent_reward_mean": 0.9923028537586888,
+      "test_agent_delay_mean": 0.15751144456559238,
+      "test_agent_loss_fraction_mean": 0.006091312358596312,
+      "test_agent_throughput_mean": 11519.52423318005,
+      "test_agent_ratio_mean": 1.5538693966689658
+    },
+    {
+      "epoch": 13,
+      "train_reward_mean": 0.9955370412638481,
+      "train_delay_mean": 0.09152079146983656,
+      "train_loss_mean": 0.0036196808266157534,
+      "critic_loss_mean": 5.708335701056889,
+      "policy_loss_mean": -18.408995968954905
+    },
+    {
+      "epoch": 14,
+      "train_reward_mean": 0.9958749986585819,
+      "train_delay_mean": 0.08573426323651495,
+      "train_loss_mean": 0.002669594957750101,
+      "critic_loss_mean": 6.355469082083021,
+      "policy_loss_mean": -19.94253969192505
+    },
+    {
+      "epoch": 15,
+      "train_reward_mean": 0.9958584808815715,
+      "train_delay_mean": 0.08686244026933473,
+      "train_loss_mean": 0.0023270930630828117,
+      "critic_loss_mean": 7.763206605400358,
+      "policy_loss_mean": -21.621984781537737
+    },
+    {
+      "epoch": 16,
+      "train_reward_mean": 0.9958513841907859,
+      "train_delay_mean": 0.0869178208255753,
+      "train_loss_mean": 0.0023731387206327656,
+      "critic_loss_mean": 8.248161350403514,
+      "policy_loss_mean": -22.878349345070976
+    },
+    {
+      "epoch": 17,
+      "train_reward_mean": 0.996055296219815,
+      "train_delay_mean": 0.08077082598942947,
+      "train_loss_mean": 0.0031001661066057088,
+      "critic_loss_mean": 9.376579313193048,
+      "policy_loss_mean": -24.71383229664394
+    },
+    {
+      "epoch": 18,
+      "train_reward_mean": 0.9961646970968945,
+      "train_delay_mean": 0.07918454485678124,
+      "train_loss_mean": 0.002719983845503285,
+      "critic_loss_mean": 10.31075415611267,
+      "policy_loss_mean": -25.84927921295166,
+      "test_agent_reward_mean": 0.9924653161179099,
+      "test_agent_delay_mean": 0.15509689589261225,
+      "test_agent_loss_fraction_mean": 0.00555323566922624,
+      "test_agent_throughput_mean": 11538.99029287569,
+      "test_agent_ratio_mean": 1.532767361598023
+    },
+    {
+      "epoch": 19,
+      "train_reward_mean": 0.9952363927011496,
+      "train_delay_mean": 0.10113994043708524,
+      "train_loss_mean": 0.0024519864657966788,
+      "critic_loss_mean": 12.18551790714264,
+      "policy_loss_mean": -26.871860953739713
+    },
+    {
+      "epoch": 20,
+      "train_reward_mean": 0.9937750917623547,
+      "train_delay_mean": 0.130529244424663,
+      "train_loss_mean": 0.0036576380502235453,
+      "critic_loss_mean": 13.225089962141855,
+      "policy_loss_mean": -28.415020969935824
+    },
+    {
+      "epoch": 21,
+      "train_reward_mean": 0.9942184627395786,
+      "train_delay_mean": 0.12052656696093741,
+      "train_loss_mean": 0.0035784174717941567,
+      "critic_loss_mean": 13.66413197687694,
+      "policy_loss_mean": -30.20440878186907
+    },
+    {
+      "epoch": 22,
+      "train_reward_mean": 0.9947685527982104,
+      "train_delay_mean": 0.10985385543239864,
+      "train_loss_mean": 0.0028802370733151325,
+      "critic_loss_mean": 15.746769658156804,
+      "policy_loss_mean": -30.89116315841675
+    },
+    {
+      "epoch": 23,
+      "train_reward_mean": 0.995366705878449,
+      "train_delay_mean": 0.09638873581266318,
+      "train_loss_mean": 0.002958010099811352,
+      "critic_loss_mean": 15.228013868842806,
+      "policy_loss_mean": -33.42109167916434
+    },
+    {
+      "epoch": 24,
+      "train_reward_mean": 0.9956647662345735,
+      "train_delay_mean": 0.09132263069751341,
+      "train_loss_mean": 0.0022571538403839096,
+      "critic_loss_mean": 17.918809635298594,
+      "policy_loss_mean": -34.83046496255057,
+      "test_agent_reward_mean": 0.9963729804029409,
+      "test_agent_delay_mean": 0.07459542950258516,
+      "test_agent_loss_fraction_mean": 0.0027022526944275615,
+      "test_agent_throughput_mean": 11635.256855140255,
+      "test_agent_ratio_mean": 1.6977856608483808
+    },
+    {
+      "epoch": 25,
+      "train_reward_mean": 0.9957386182781673,
+      "train_delay_mean": 0.08861098039357655,
+      "train_loss_mean": 0.002738876041216433,
+      "critic_loss_mean": 20.415456788880483,
+      "policy_loss_mean": -36.44312351771763
+    },
+    {
+      "epoch": 26,
+      "train_reward_mean": 0.9961694860587709,
+      "train_delay_mean": 0.07903687893160918,
+      "train_loss_mean": 0.002738543893067165,
+      "critic_loss_mean": 22.62902902194432,
+      "policy_loss_mean": -38.24009110586984
+    },
+    {
+      "epoch": 27,
+      "train_reward_mean": 0.9961593377527943,
+      "train_delay_mean": 0.07914710329500262,
+      "train_loss_mean": 0.0027904259893040753,
+      "critic_loss_mean": 23.405726320402962,
+      "policy_loss_mean": -40.51735452924456
+    },
+    {
+      "epoch": 28,
+      "train_reward_mean": 0.9961641465557827,
+      "train_delay_mean": 0.07911065247230883,
+      "train_loss_mean": 0.0027587408296357915,
+      "critic_loss_mean": 26.186838592801774,
+      "policy_loss_mean": -41.90328709738595
+    },
+    {
+      "epoch": 29,
+      "train_reward_mean": 0.9955736688399083,
+      "train_delay_mean": 0.09125100089062313,
+      "train_loss_mean": 0.0032003612001364483,
+      "critic_loss_mean": 27.955494817665645,
+      "policy_loss_mean": -44.35938747950963
+    },
+    {
+      "epoch": 30,
+      "train_reward_mean": 0.9957373217231127,
+      "train_delay_mean": 0.08856980161001246,
+      "train_loss_mean": 0.0027703720443674903,
+      "critic_loss_mean": 29.25518868991307,
+      "policy_loss_mean": -45.66082344055176,
+      "test_agent_reward_mean": 0.9927550544793294,
+      "test_agent_delay_mean": 0.15372714943632265,
+      "test_agent_loss_fraction_mean": 0.003272237960362166,
+      "test_agent_throughput_mean": 11629.398959420074,
+      "test_agent_ratio_mean": 1.682067398969987
+    },
+    {
+      "epoch": 31,
+      "train_reward_mean": 0.9961617071975667,
+      "train_delay_mean": 0.0800234124365056,
+      "train_loss_mean": 0.002372392427906647,
+      "critic_loss_mean": 30.994671634265355,
+      "policy_loss_mean": -48.95832132611956
+    },
+    {
+      "epoch": 32,
+      "train_reward_mean": 0.9958154523496853,
+      "train_delay_mean": 0.08804253227947122,
+      "train_loss_mean": 0.0022263369773849874,
+      "critic_loss_mean": 35.87710450376783,
+      "policy_loss_mean": -52.44227804456438
+    },
+    {
+      "epoch": 33,
+      "train_reward_mean": 0.9956126353727992,
+      "train_delay_mean": 0.09246294870781507,
+      "train_loss_mean": 0.002265319353491555,
+      "critic_loss_mean": 44.47494806221553,
+      "policy_loss_mean": -54.89977594103132
+    },
+    {
+      "epoch": 34,
+      "train_reward_mean": 0.9962391134015284,
+      "train_delay_mean": 0.07806878510385028,
+      "train_loss_mean": 0.002477912687982972,
+      "critic_loss_mean": 42.82061388151986,
+      "policy_loss_mean": -57.210534531729564
+    },
+    {
+      "epoch": 35,
+      "train_reward_mean": 0.9960590545056154,
+      "train_delay_mean": 0.0814503257069103,
+      "train_loss_mean": 0.00275680837573637,
+      "critic_loss_mean": 49.43977229254586,
+      "policy_loss_mean": -60.3597989491054
+    },
+    {
+      "epoch": 36,
+      "train_reward_mean": 0.9963213775450789,
+      "train_delay_mean": 0.07689482143326876,
+      "train_loss_mean": 0.002183554904241163,
+      "critic_loss_mean": 53.501368624823435,
+      "policy_loss_mean": -62.30640839168004,
+      "test_agent_reward_mean": 0.9962772041689626,
+      "test_agent_delay_mean": 0.07638884493142453,
+      "test_agent_loss_fraction_mean": 0.002852978091231324,
+      "test_agent_throughput_mean": 11627.99144417706,
+      "test_agent_ratio_mean": 1.6429424985944516
+    },
+    {
+      "epoch": 37,
+      "train_reward_mean": 0.9962910546513626,
+      "train_delay_mean": 0.07732946406083004,
+      "train_loss_mean": 0.0022911946589979364,
+      "critic_loss_mean": 54.91856075695583,
+      "policy_loss_mean": -65.89639214106968
+    },
+    {
+      "epoch": 38,
+      "train_reward_mean": 0.9961885437704422,
+      "train_delay_mean": 0.0787365317755258,
+      "train_loss_mean": 0.0026831229965905,
+      "critic_loss_mean": 63.49091082300458,
+      "policy_loss_mean": -69.47582359313965
+    },
+    {
+      "epoch": 39,
+      "train_reward_mean": 0.9961807916656462,
+      "train_delay_mean": 0.07883620485952633,
+      "train_loss_mean": 0.0027157911567530905,
+      "critic_loss_mean": 70.82184061322893,
+      "policy_loss_mean": -72.09107813153948
+    },
+    {
+      "epoch": 40,
+      "train_reward_mean": 0.996088258619579,
+      "train_delay_mean": 0.08087041037810125,
+      "train_loss_mean": 0.002725729134063755,
+      "critic_loss_mean": 67.61299860136849,
+      "policy_loss_mean": -73.87748898097448
+    },
+    {
+      "epoch": 41,
+      "train_reward_mean": 0.9961738419920482,
+      "train_delay_mean": 0.07893516890856006,
+      "train_loss_mean": 0.0027407540706652837,
+      "critic_loss_mean": 75.86748095239912,
+      "policy_loss_mean": -75.49510617937361
+    },
+    {
+      "epoch": 42,
+      "train_reward_mean": 0.9961836880621884,
+      "train_delay_mean": 0.07879121092297685,
+      "train_loss_mean": 0.0027070744627766606,
+      "critic_loss_mean": 80.7795523439135,
+      "policy_loss_mean": -78.72117282322475,
+      "test_agent_reward_mean": 0.996368974285259,
+      "test_agent_delay_mean": 0.0744061935094902,
+      "test_agent_loss_fraction_mean": 0.0028274700681390195,
+      "test_agent_throughput_mean": 11635.765908900748,
+      "test_agent_ratio_mean": 1.5454985641214536
+    },
+    {
+      "epoch": 43,
+      "train_reward_mean": 0.9960810393850149,
+      "train_delay_mean": 0.08115125115391865,
+      "train_loss_mean": 0.0028339562236223146,
+      "critic_loss_mean": 91.44497641154697,
+      "policy_loss_mean": -81.58814909798758
+    },
+    {
+      "epoch": 44,
+      "train_reward_mean": 0.996291217777757,
+      "train_delay_mean": 0.0772539093226075,
+      "train_loss_mean": 0.0023235630272555913,
+      "critic_loss_mean": 96.49199237823487,
+      "policy_loss_mean": -85.21886024475097
+    },
+    {
+      "epoch": 45,
+      "train_reward_mean": 0.9958108842164723,
+      "train_delay_mean": 0.08848864573043153,
+      "train_loss_mean": 0.0022416576505035995,
+      "critic_loss_mean": 96.33474467141288,
+      "policy_loss_mean": -88.34101595197406
+    },
+    {
+      "epoch": 46,
+      "train_reward_mean": 0.9958000472704733,
+      "train_delay_mean": 0.08844178877661484,
+      "train_loss_mean": 0.002200917732497395,
+      "critic_loss_mean": 103.98229563576835,
+      "policy_loss_mean": -91.16255427769252
+    },
+    {
+      "epoch": 47,
+      "train_reward_mean": 0.9962228627553206,
+      "train_delay_mean": 0.0782863058378424,
+      "train_loss_mean": 0.0025425348197663264,
+      "critic_loss_mean": 115.32527606146677,
+      "policy_loss_mean": -94.94889313834054
+    },
+    {
+      "epoch": 48,
+      "train_reward_mean": 0.995927527989595,
+      "train_delay_mean": 0.08479867623230368,
+      "train_loss_mean": 0.002565315799513599,
+      "critic_loss_mean": 127.665894140516,
+      "policy_loss_mean": -98.81112055097307,
+      "test_agent_reward_mean": 0.9963757349788658,
+      "test_agent_delay_mean": 0.07430348463137956,
+      "test_agent_loss_fraction_mean": 0.002806082127222841,
+      "test_agent_throughput_mean": 11635.066407232402,
+      "test_agent_ratio_mean": 1.684200049475165
+    },
+    {
+      "epoch": 49,
+      "train_reward_mean": 0.9962343630977102,
+      "train_delay_mean": 0.07811506485551034,
+      "train_loss_mean": 0.002504589837918379,
+      "critic_loss_mean": 127.55242058890207,
+      "policy_loss_mean": -103.29269643511091
+    },
+    {
+      "epoch": 50,
+      "train_reward_mean": 0.9961703844831428,
+      "train_delay_mean": 0.0790278135340107,
+      "train_loss_mean": 0.0027336390782696494,
+      "critic_loss_mean": 156.13065389905657,
+      "policy_loss_mean": -108.72310916355679
+    },
+    {
+      "epoch": 51,
+      "train_reward_mean": 0.9961713067086722,
+      "train_delay_mean": 0.0790076171007857,
+      "train_loss_mean": 0.0027335052179236334,
+      "critic_loss_mean": 168.437325831822,
+      "policy_loss_mean": -113.26752520969936
+    },
+    {
+      "epoch": 52,
+      "train_reward_mean": 0.9961730808004223,
+      "train_delay_mean": 0.07898874521476225,
+      "train_loss_mean": 0.0027245129886651932,
+      "critic_loss_mean": 179.75253383091518,
+      "policy_loss_mean": -117.44689925057547
+    },
+    {
+      "epoch": 53,
+      "train_reward_mean": 0.9961274789524422,
+      "train_delay_mean": 0.07961173759973783,
+      "train_loss_mean": 0.002899928555696117,
+      "critic_loss_mean": 200.3510459627424,
+      "policy_loss_mean": -122.8129636492048
+    },
+    {
+      "epoch": 54,
+      "train_reward_mean": 0.9961501490890854,
+      "train_delay_mean": 0.07926841107620396,
+      "train_loss_mean": 0.0028277241248544204,
+      "critic_loss_mean": 204.3835874557495,
+      "policy_loss_mean": -126.39604857308524,
+      "test_agent_reward_mean": 0.9963784283621365,
+      "test_agent_delay_mean": 0.07426980446096192,
+      "test_agent_loss_fraction_mean": 0.0027943043712012603,
+      "test_agent_throughput_mean": 11635.834346117623,
+      "test_agent_ratio_mean": 1.587254874083036
+    },
+    {
+      "epoch": 55,
+      "train_reward_mean": 0.9961760821440675,
+      "train_delay_mean": 0.07889958138238541,
+      "train_loss_mean": 0.0027343669372502447,
+      "critic_loss_mean": 225.47102039882114,
+      "policy_loss_mean": -131.64710382734026
+    },
+    {
+      "epoch": 56,
+      "train_reward_mean": 0.9961737232121803,
+      "train_delay_mean": 0.07894557266167461,
+      "train_loss_mean": 0.0027372601804422827,
+      "critic_loss_mean": 244.23381265912738,
+      "policy_loss_mean": -135.70805195399694
+    },
+    {
+      "epoch": 57,
+      "train_reward_mean": 0.9961741767885296,
+      "train_delay_mean": 0.07896099790756556,
+      "train_loss_mean": 0.0027257830562990772,
+      "critic_loss_mean": 258.6312846047538,
+      "policy_loss_mean": -141.23781313214982
+    },
+    {
+      "epoch": 58,
+      "train_reward_mean": 0.9961782868224556,
+      "train_delay_mean": 0.0788951712517041,
+      "train_loss_mean": 0.0027143047121772753,
+      "critic_loss_mean": 271.49371817452567,
+      "policy_loss_mean": -146.42146028791154
+    },
+    {
+      "epoch": 59,
+      "train_reward_mean": 0.9961717015267425,
+      "train_delay_mean": 0.07899088968087836,
+      "train_loss_mean": 0.0027370843761798476,
+      "critic_loss_mean": 306.7709794180734,
+      "policy_loss_mean": -151.95656705583846
+    },
+    {
+      "epoch": 60,
+      "train_reward_mean": 0.9951865499880885,
+      "train_delay_mean": 0.09998808139767745,
+      "train_loss_mean": 0.0031398634901608794,
+      "critic_loss_mean": 332.152033996582,
+      "policy_loss_mean": -158.24935302734374,
+      "test_agent_reward_mean": 0.9963637935265088,
+      "test_agent_delay_mean": 0.07454956846542607,
+      "test_agent_loss_fraction_mean": 0.002814758925471658,
+      "test_agent_throughput_mean": 11634.714531626076,
+      "test_agent_ratio_mean": 1.6563434417013032
+    },
+    {
+      "epoch": 61,
+      "train_reward_mean": 0.9944518405065575,
+      "train_delay_mean": 0.11594588192103474,
+      "train_loss_mean": 0.003305948069960158,
+      "critic_loss_mean": 358.04147611345564,
+      "policy_loss_mean": -165.84002358572823
+    },
+    {
+      "epoch": 62,
+      "train_reward_mean": 0.9951119901030676,
+      "train_delay_mean": 0.1016506760653016,
+      "train_loss_mean": 0.0031372947399388937,
+      "critic_loss_mean": 395.03004815237864,
+      "policy_loss_mean": -171.41503546578542
+    },
+    {
+      "epoch": 63,
+      "train_reward_mean": 0.9931825934152881,
+      "train_delay_mean": 0.14352158217470332,
+      "train_loss_mean": 0.0035893538685029557,
+      "critic_loss_mean": 410.69563609531946,
+      "policy_loss_mean": -177.34153638567244
+    },
+    {
+      "epoch": 64,
+      "train_reward_mean": 0.9923696121024806,
+      "train_delay_mean": 0.16415069999985255,
+      "train_loss_mean": 0.003964929489508538,
+      "critic_loss_mean": 434.03575924464633,
+      "policy_loss_mean": -184.31230861118863
+    },
+    {
+      "epoch": 65,
+      "train_reward_mean": 0.9934437738717162,
+      "train_delay_mean": 0.1410491353581745,
+      "train_loss_mean": 0.0038793384590259366,
+      "critic_loss_mean": 478.8098190852574,
+      "policy_loss_mean": -190.70398886544365
+    },
+    {
+      "epoch": 66,
+      "train_reward_mean": 0.9939030828397205,
+      "train_delay_mean": 0.1287072007836262,
+      "train_loss_mean": 0.0038274022713049296,
+      "critic_loss_mean": 471.9793490273612,
+      "policy_loss_mean": -198.0647280011858,
+      "test_agent_reward_mean": 0.9947843376653428,
+      "test_agent_delay_mean": 0.11129616541050004,
+      "test_agent_loss_fraction_mean": 0.004264885076686143,
+      "test_agent_throughput_mean": 11937.86602608422,
+      "test_agent_ratio_mean": 1.5265582018816741
+    },
+    {
+      "epoch": 67,
+      "train_reward_mean": 0.9944590205258607,
+      "train_delay_mean": 0.11871582905738777,
+      "train_loss_mean": 0.0031498161267600627,
+      "critic_loss_mean": 475.88797035217283,
+      "policy_loss_mean": -206.39471479143415
+    },
+    {
+      "epoch": 68,
+      "train_reward_mean": 0.9942931443781995,
+      "train_delay_mean": 0.11953995185848394,
+      "train_loss_mean": 0.0032755778816867132,
+      "critic_loss_mean": 541.2251979827881,
+      "policy_loss_mean": -211.66745463779995
+    },
+    {
+      "epoch": 69,
+      "train_reward_mean": 0.9951679041934156,
+      "train_delay_mean": 0.10111896817010337,
+      "train_loss_mean": 0.002817422389297066,
+      "critic_loss_mean": 571.0839963095528,
+      "policy_loss_mean": -219.25876246861048
+    },
+    {
+      "epoch": 70,
+      "train_reward_mean": 0.9936709645472525,
+      "train_delay_mean": 0.13314986534223022,
+      "train_loss_mean": 0.003372915123471845,
+      "critic_loss_mean": 622.815576335362,
+      "policy_loss_mean": -225.79643271309988
+    },
+    {
+      "epoch": 71,
+      "train_reward_mean": 0.9958516354348717,
+      "train_delay_mean": 0.08719073270833726,
+      "train_loss_mean": 0.0022478159325323515,
+      "critic_loss_mean": 677.5850496564593,
+      "policy_loss_mean": -234.46803240094866
+    },
+    {
+      "epoch": 72,
+      "train_reward_mean": 0.9955803348210805,
+      "train_delay_mean": 0.09308331849188728,
+      "train_loss_mean": 0.0023091584678467877,
+      "critic_loss_mean": 751.9526959010533,
+      "policy_loss_mean": -241.4246852329799,
+      "test_agent_reward_mean": 0.996481011265964,
+      "test_agent_delay_mean": 0.072662039254294,
+      "test_agent_loss_fraction_mean": 0.002491969675927004,
+      "test_agent_throughput_mean": 11657.11294256851,
+      "test_agent_ratio_mean": 1.6301731861394757
+    },
+    {
+      "epoch": 73,
+      "train_reward_mean": 0.9931890886125806,
+      "train_delay_mean": 0.14370520052358904,
+      "train_loss_mean": 0.0034417736385778273,
+      "critic_loss_mean": 816.0603955950056,
+      "policy_loss_mean": -250.57708936418805
+    },
+    {
+      "epoch": 74,
+      "train_reward_mean": 0.9928448698790673,
+      "train_delay_mean": 0.1542694877542373,
+      "train_loss_mean": 0.0036033422194289566,
+      "critic_loss_mean": 836.5650931222099,
+      "policy_loss_mean": -259.72221341814316
+    },
+    {
+      "epoch": 75,
+      "train_reward_mean": 0.9928127566654906,
+      "train_delay_mean": 0.15420999844994965,
+      "train_loss_mean": 0.003606479737214425,
+      "critic_loss_mean": 893.8946722848075,
+      "policy_loss_mean": -269.9083258492606
+    },
+    {
+      "epoch": 76,
+      "train_reward_mean": 0.9927796068703506,
+      "train_delay_mean": 0.15433523185885062,
+      "train_loss_mean": 0.0036109754393371177,
+      "critic_loss_mean": 997.0595918927874,
+      "policy_loss_mean": -281.0651419503348
+    },
+    {
+      "epoch": 77,
+      "train_reward_mean": 0.9928788399780446,
+      "train_delay_mean": 0.15211052957537546,
+      "train_loss_mean": 0.0036160589488915826,
+      "critic_loss_mean": 1073.6037833077567,
+      "policy_loss_mean": -294.8199689592634
+    },
+    {
+      "epoch": 78,
+      "train_reward_mean": 0.992907459041869,
+      "train_delay_mean": 0.15466934869583787,
+      "train_loss_mean": 0.003706974423025647,
+      "critic_loss_mean": 1131.4386276245118,
+      "policy_loss_mean": -306.1660980224609,
+      "test_agent_reward_mean": 0.9924516371601778,
+      "test_agent_delay_mean": 0.1530609923362577,
+      "test_agent_loss_fraction_mean": 0.006606181846905688,
+      "test_agent_throughput_mean": 11931.883974896464,
+      "test_agent_ratio_mean": 1.6464778579006745
+    },
+    {
+      "epoch": 79,
+      "train_reward_mean": 0.99322247692869,
+      "train_delay_mean": 0.14305652864172602,
+      "train_loss_mean": 0.003711299875061448,
+      "critic_loss_mean": 1152.8664632524763,
+      "policy_loss_mean": -318.3482912336077
+    },
+    {
+      "epoch": 80,
+      "train_reward_mean": 0.9926796514516559,
+      "train_delay_mean": 0.154196425382142,
+      "train_loss_mean": 0.0038155137260260817,
+      "critic_loss_mean": 1413.0871089390346,
+      "policy_loss_mean": -331.6238789149693
+    },
+    {
+      "epoch": 81,
+      "train_reward_mean": 0.9926623526673313,
+      "train_delay_mean": 0.15462464663271147,
+      "train_loss_mean": 0.003795581424349769,
+      "critic_loss_mean": 1370.8276674543108,
+      "policy_loss_mean": -344.0949467250279
+    },
+    {
+      "epoch": 82,
+      "train_reward_mean": 0.9927206535367138,
+      "train_delay_mean": 0.15451584226546547,
+      "train_loss_mean": 0.0038442541309048014,
+      "critic_loss_mean": 1503.5443348475865,
+      "policy_loss_mean": -357.1137189592634
+    },
+    {
+      "epoch": 83,
+      "train_reward_mean": 0.9927574008300777,
+      "train_delay_mean": 0.15496313135526524,
+      "train_loss_mean": 0.0038605707077154438,
+      "critic_loss_mean": 1582.0527500697544,
+      "policy_loss_mean": -371.7631866455078
+    },
+    {
+      "epoch": 84,
+      "train_reward_mean": 0.9928085793246813,
+      "train_delay_mean": 0.15521461762026484,
+      "train_loss_mean": 0.0038668133740116864,
+      "critic_loss_mean": 1720.669191632952,
+      "policy_loss_mean": -383.2717304774693,
+      "test_agent_reward_mean": 0.9913226689915466,
+      "test_agent_delay_mean": 0.17908969149581414,
+      "test_agent_loss_fraction_mean": 0.006182948911417846,
+      "test_agent_throughput_mean": 12028.846279319721,
+      "test_agent_ratio_mean": 1.668339807222399
+    },
+    {
+      "epoch": 85,
+      "train_reward_mean": 0.9929109845463481,
+      "train_delay_mean": 0.15507408558790153,
+      "train_loss_mean": 0.00379369941071237,
+      "critic_loss_mean": 1729.7607986450196,
+      "policy_loss_mean": -399.74484296526225
+    },
+    {
+      "epoch": 86,
+      "train_reward_mean": 0.9931852055777967,
+      "train_delay_mean": 0.15490023125727082,
+      "train_loss_mean": 0.0037772624166580093,
+      "critic_loss_mean": 1963.9415544782366,
+      "policy_loss_mean": -415.9839423043387
+    },
+    {
+      "epoch": 87,
+      "train_reward_mean": 0.9926176105418903,
+      "train_delay_mean": 0.17159460494159606,
+      "train_loss_mean": 0.00427671316670164,
+      "critic_loss_mean": 2134.5195373535157,
+      "policy_loss_mean": -430.3963902064732
+    },
+    {
+      "epoch": 88,
+      "train_reward_mean": 0.9925775856084006,
+      "train_delay_mean": 0.16995700517631873,
+      "train_loss_mean": 0.004709576312454938,
+      "critic_loss_mean": 2180.324510846819,
+      "policy_loss_mean": -447.436304800851
+    },
+    {
+      "epoch": 89,
+      "train_reward_mean": 0.994728762958869,
+      "train_delay_mean": 0.11714554794738041,
+      "train_loss_mean": 0.0031790458223348653,
+      "critic_loss_mean": 2523.245032610212,
+      "policy_loss_mean": -463.0655388968332
+    },
+    {
+      "epoch": 90,
+      "train_reward_mean": 0.992625929410093,
+      "train_delay_mean": 0.15692216770154,
+      "train_loss_mean": 0.004271693645517973,
+      "critic_loss_mean": 2552.7898250034877,
+      "policy_loss_mean": -480.91815294538225,
+      "test_agent_reward_mean": 0.9910037787867725,
+      "test_agent_delay_mean": 0.18223512541917192,
+      "test_agent_loss_fraction_mean": 0.007956405693649025,
+      "test_agent_throughput_mean": 11986.372952005178,
+      "test_agent_ratio_mean": 1.6985804228341859
+    },
+    {
+      "epoch": 91,
+      "train_reward_mean": 0.9917438884775671,
+      "train_delay_mean": 0.1764082377417758,
+      "train_loss_mean": 0.004694400866372553,
+      "critic_loss_mean": 2596.5715715680803,
+      "policy_loss_mean": -500.50723811558316
+    },
+    {
+      "epoch": 92,
+      "train_reward_mean": 0.991502549380734,
+      "train_delay_mean": 0.18984970771305965,
+      "train_loss_mean": 0.0049610878461009335,
+      "critic_loss_mean": 2780.2478110177176,
+      "policy_loss_mean": -515.0788663591658
+    },
+    {
+      "epoch": 93,
+      "train_reward_mean": 0.9916822857417565,
+      "train_delay_mean": 0.18475534515251638,
+      "train_loss_mean": 0.004836484046279902,
+      "critic_loss_mean": 3176.332873535156,
+      "policy_loss_mean": -537.6226409912109
+    },
+    {
+      "epoch": 94,
+      "train_reward_mean": 0.9915096866059756,
+      "train_delay_mean": 0.19006118944148787,
+      "train_loss_mean": 0.005388232865066693,
+      "critic_loss_mean": 3141.0036917550224,
+      "policy_loss_mean": -557.0250318254743
+    },
+    {
+      "epoch": 95,
+      "train_reward_mean": 0.991577488035864,
+      "train_delay_mean": 0.18617912687934135,
+      "train_loss_mean": 0.004977095948178395,
+      "critic_loss_mean": 3444.349510846819,
+      "policy_loss_mean": -577.7052472795759
+    },
+    {
+      "epoch": 96,
+      "train_reward_mean": 0.9915115082580455,
+      "train_delay_mean": 0.1858231804612802,
+      "train_loss_mean": 0.005463131167476561,
+      "critic_loss_mean": 3628.5941680908204,
+      "policy_loss_mean": -600.9488507952009,
+      "test_agent_reward_mean": 0.9912562537149185,
+      "test_agent_delay_mean": 0.1825157233613397,
+      "test_agent_loss_fraction_mean": 0.007862301880793066,
+      "test_agent_throughput_mean": 12155.604619901109,
+      "test_agent_ratio_mean": 1.7447261949092976
+    },
+    {
+      "epoch": 97,
+      "train_reward_mean": 0.9908177929907449,
+      "train_delay_mean": 0.19675045314067988,
+      "train_loss_mean": 0.0052626376280406825,
+      "critic_loss_mean": 3859.3323325020924,
+      "policy_loss_mean": -625.4712781633649
+    },
+    {
+      "epoch": 98,
+      "train_reward_mean": 0.9908340755945663,
+      "train_delay_mean": 0.19650642237966626,
+      "train_loss_mean": 0.005189792750216998,
+      "critic_loss_mean": 4635.43129359654,
+      "policy_loss_mean": -653.0854862758091
+    },
+    {
+      "epoch": 99,
+      "train_reward_mean": 0.9913754611925009,
+      "train_delay_mean": 0.19629187977280393,
+      "train_loss_mean": 0.005131401499208494,
+      "critic_loss_mean": 4695.593169294085,
+      "policy_loss_mean": -682.5908469063895
+    },
+    {
+      "epoch": 100,
+      "train_reward_mean": 0.9913670918935801,
+      "train_delay_mean": 0.19629667821836097,
+      "train_loss_mean": 0.005140157029549771,
+      "critic_loss_mean": 5552.39490007673,
+      "policy_loss_mean": -713.1157274518695
+    },
+    {
+      "epoch": 101,
+      "train_reward_mean": 0.9913135870078302,
+      "train_delay_mean": 0.19862239369574305,
+      "train_loss_mean": 0.005167407159707645,
+      "critic_loss_mean": 5958.9807146344865,
+      "policy_loss_mean": -749.0533695765904
+    },
+    {
+      "epoch": 102,
+      "train_reward_mean": 0.9915250531706127,
+      "train_delay_mean": 0.19855782937621733,
+      "train_loss_mean": 0.005385912970623301,
+      "critic_loss_mean": 7268.241610281808,
+      "policy_loss_mean": -777.2695469447544,
+      "test_agent_reward_mean": 0.9910590517681425,
+      "test_agent_delay_mean": 0.21158172989006202,
+      "test_agent_loss_fraction_mean": 0.007797597751750174,
+      "test_agent_throughput_mean": 12242.824134987535,
+      "test_agent_ratio_mean": 1.7621344641760175
+    },
+    {
+      "epoch": 103,
+      "train_reward_mean": 0.9916253996926935,
+      "train_delay_mean": 0.1980564816778944,
+      "train_loss_mean": 0.005258386304237425,
+      "critic_loss_mean": 7263.380521065848,
+      "policy_loss_mean": -815.9090872628349
+    },
+    {
+      "epoch": 104,
+      "train_reward_mean": 0.9915707537107524,
+      "train_delay_mean": 0.19830057044347793,
+      "train_loss_mean": 0.005350832891728853,
+      "critic_loss_mean": 7790.994649832589,
+      "policy_loss_mean": -852.4560642787388
+    },
+    {
+      "epoch": 105,
+      "train_reward_mean": 0.9916338922329593,
+      "train_delay_mean": 0.19803920154350288,
+      "train_loss_mean": 0.0053665997623809965,
+      "critic_loss_mean": 8463.210212053571,
+      "policy_loss_mean": -893.4531930106027
+    },
+    {
+      "epoch": 106,
+      "train_reward_mean": 0.9916254984339499,
+      "train_delay_mean": 0.1996423877955421,
+      "train_loss_mean": 0.005642653917571256,
+      "critic_loss_mean": 9041.716859654018,
+      "policy_loss_mean": -934.9395673479353
+    },
+    {
+      "epoch": 107,
+      "train_reward_mean": 0.9917678612701829,
+      "train_delay_mean": 0.1976695032874077,
+      "train_loss_mean": 0.004988177969099653,
+      "critic_loss_mean": 10630.106014578683,
+      "policy_loss_mean": -975.640888759068
+    },
+    {
+      "epoch": 108,
+      "train_reward_mean": 0.9917191449626547,
+      "train_delay_mean": 0.1987534437288599,
+      "train_loss_mean": 0.005329690203225021,
+      "critic_loss_mean": 11107.38066231864,
+      "policy_loss_mean": -1024.39244253976,
+      "test_agent_reward_mean": 0.9910636975479509,
+      "test_agent_delay_mean": 0.21149400437512866,
+      "test_agent_loss_fraction_mean": 0.007786765690085911,
+      "test_agent_throughput_mean": 12234.43239114024,
+      "test_agent_ratio_mean": 1.7772603751281035
+    },
+    {
+      "epoch": 109,
+      "train_reward_mean": 0.9915486751701378,
+      "train_delay_mean": 0.20004643783368523,
+      "train_loss_mean": 0.005717032955229189,
+      "critic_loss_mean": 11290.407570103236,
+      "policy_loss_mean": -1071.0148010253906
+    },
+    {
+      "epoch": 110,
+      "train_reward_mean": 0.9915747638338072,
+      "train_delay_mean": 0.20087548959017246,
+      "train_loss_mean": 0.005951740794538637,
+      "critic_loss_mean": 12935.481541224888,
+      "policy_loss_mean": -1123.0128836495535
+    },
+    {
+      "epoch": 111,
+      "train_reward_mean": 0.9917475995530078,
+      "train_delay_mean": 0.19795876321755043,
+      "train_loss_mean": 0.005623014349944133,
+      "critic_loss_mean": 14938.268952287946,
+      "policy_loss_mean": -1175.0792088099888
+    },
+    {
+      "epoch": 112,
+      "train_reward_mean": 0.9917224183026438,
+      "train_delay_mean": 0.19805058857653932,
+      "train_loss_mean": 0.005568830774107936,
+      "critic_loss_mean": 15251.578864397321,
+      "policy_loss_mean": -1226.6440011160714
+    },
+    {
+      "epoch": 113,
+      "train_reward_mean": 0.9915908005930382,
+      "train_delay_mean": 0.1987118005700576,
+      "train_loss_mean": 0.005813010054002778,
+      "critic_loss_mean": 16207.071702357702,
+      "policy_loss_mean": -1285.3856506347656
+    },
+    {
+      "epoch": 114,
+      "train_reward_mean": 0.9915524726881452,
+      "train_delay_mean": 0.19966410139974825,
+      "train_loss_mean": 0.006387642910725397,
+      "critic_loss_mean": 19177.268995884486,
+      "policy_loss_mean": -1339.8686070033482,
+      "test_agent_reward_mean": 0.9910635202318716,
+      "test_agent_delay_mean": 0.21149880774183996,
+      "test_agent_loss_fraction_mean": 0.00778668612371806,
+      "test_agent_throughput_mean": 12340.614951624575,
+      "test_agent_ratio_mean": 1.7621536881197124
+    },
+    {
+      "epoch": 115,
+      "train_reward_mean": 0.9917226639830306,
+      "train_delay_mean": 0.19809519845156975,
+      "train_loss_mean": 0.005829271227852576,
+      "critic_loss_mean": 19925.817218889508,
+      "policy_loss_mean": -1407.9739650181361
+    },
+    {
+      "epoch": 116,
+      "train_reward_mean": 0.9914808428597758,
+      "train_delay_mean": 0.1990934307310948,
+      "train_loss_mean": 0.006248131079592511,
+      "critic_loss_mean": 22433.249823869977,
+      "policy_loss_mean": -1473.4720293317523
+    },
+    {
+      "epoch": 117,
+      "train_reward_mean": 0.9914890771339608,
+      "train_delay_mean": 0.19955446895722656,
+      "train_loss_mean": 0.006330077403528113,
+      "critic_loss_mean": 24129.878662109375,
+      "policy_loss_mean": -1539.131520298549
+    },
+    {
+      "epoch": 118,
+      "train_reward_mean": 0.9914967267941833,
+      "train_delay_mean": 0.19960315727034894,
+      "train_loss_mean": 0.006373171728279308,
+      "critic_loss_mean": 25727.005189732143,
+      "policy_loss_mean": -1616.7599400111608
+    },
+    {
+      "epoch": 119,
+      "train_reward_mean": 0.9915596601574497,
+      "train_delay_mean": 0.19920147204293445,
+      "train_loss_mean": 0.006218111284122248,
+      "critic_loss_mean": 30239.533813476562,
+      "policy_loss_mean": -1689.5550214494979
+    },
+    {
+      "epoch": 120,
+      "train_reward_mean": 0.9916861737142509,
+      "train_delay_mean": 0.19590996326935944,
+      "train_loss_mean": 0.006213083849358165,
+      "critic_loss_mean": 34932.23326939174,
+      "policy_loss_mean": -1774.143053327288,
+      "test_agent_reward_mean": 0.9909235357956749,
+      "test_agent_delay_mean": 0.21413432019405546,
+      "test_agent_loss_fraction_mean": 0.008169975682687663,
+      "test_agent_throughput_mean": 12364.384285765771,
+      "test_agent_ratio_mean": 1.7602174609157564
+    },
+    {
+      "epoch": 121,
+      "train_reward_mean": 0.9916320786573457,
+      "train_delay_mean": 0.199625624602898,
+      "train_loss_mean": 0.006415394128327478,
+      "critic_loss_mean": 34156.42560337612,
+      "policy_loss_mean": -1873.6760489327567
+    },
+    {
+      "epoch": 122,
+      "train_reward_mean": 0.991506016532028,
+      "train_delay_mean": 0.19965060626447512,
+      "train_loss_mean": 0.006437897657898178,
+      "critic_loss_mean": 36560.17470703125,
+      "policy_loss_mean": -1970.0204720633371
+    },
+    {
+      "epoch": 123,
+      "train_reward_mean": 0.9915820817600002,
+      "train_delay_mean": 0.20051035323377744,
+      "train_loss_mean": 0.006160548476567285,
+      "critic_loss_mean": 42404.8634765625,
+      "policy_loss_mean": -2067.1248151506697
+    },
+    {
+      "epoch": 124,
+      "train_reward_mean": 0.9933857007212609,
+      "train_delay_mean": 0.15894516880571133,
+      "train_loss_mean": 0.004688659620628109,
+      "critic_loss_mean": 46726.18957170759,
+      "policy_loss_mean": -2176.392196219308
+    },
+    {
+      "epoch": 125,
+      "train_reward_mean": 0.9941074595158016,
+      "train_delay_mean": 0.1398901434796865,
+      "train_loss_mean": 0.0040964579356317565,
+      "critic_loss_mean": 55782.40299944196,
+      "policy_loss_mean": -2295.4492623465403
+    },
+    {
+      "epoch": 126,
+      "train_reward_mean": 0.9924961075441262,
+      "train_delay_mean": 0.17711161848578086,
+      "train_loss_mean": 0.005224454108100667,
+      "critic_loss_mean": 56540.39547293527,
+      "policy_loss_mean": -2410.9887712751115,
+      "test_agent_reward_mean": 0.9909175447965503,
+      "test_agent_delay_mean": 0.21410499289972804,
+      "test_agent_loss_fraction_mean": 0.008241197630317143,
+      "test_agent_throughput_mean": 12140.184905690321,
+      "test_agent_ratio_mean": 1.741127004298625
+    },
+    {
+      "epoch": 127,
+      "train_reward_mean": 0.9946890442198371,
+      "train_delay_mean": 0.11958449453549445,
+      "train_loss_mean": 0.0033784804906936802,
+      "critic_loss_mean": 65582.50234375,
+      "policy_loss_mean": -2528.0874354771204
+    },
+    {
+      "epoch": 128,
+      "train_reward_mean": 0.9948437053717344,
+      "train_delay_mean": 0.1166463972969923,
+      "train_loss_mean": 0.003033381279250581,
+      "critic_loss_mean": 72571.4728515625,
+      "policy_loss_mean": -2649.711638532366
+    },
+    {
+      "epoch": 129,
+      "train_reward_mean": 0.995464724990351,
+      "train_delay_mean": 0.09909659087558778,
+      "train_loss_mean": 0.0026776615540000112,
+      "critic_loss_mean": 81349.36681780133,
+      "policy_loss_mean": -2783.053789411272
+    },
+    {
+      "epoch": 130,
+      "train_reward_mean": 0.9961022638660194,
+      "train_delay_mean": 0.08580517591325067,
+      "train_loss_mean": 0.0026411204388368304,
+      "critic_loss_mean": 95332.09584263393,
+      "policy_loss_mean": -2897.8025582449777
+    },
+    {
+      "epoch": 131,
+      "train_reward_mean": 0.9952745301959138,
+      "train_delay_mean": 0.11263586221639725,
+      "train_loss_mean": 0.003522309710727178,
+      "critic_loss_mean": 99593.69955357142,
+      "policy_loss_mean": -3028.701332310268
+    },
+    {
+      "epoch": 132,
+      "train_reward_mean": 0.9927623345000346,
+      "train_delay_mean": 0.1755254819566402,
+      "train_loss_mean": 0.004673969102093994,
+      "critic_loss_mean": 108811.6341796875,
+      "policy_loss_mean": -3152.8297729492188,
+      "test_agent_reward_mean": 0.9951886313201412,
+      "test_agent_delay_mean": 0.111554484116273,
+      "test_agent_loss_fraction_mean": 0.005085528639454301,
+      "test_agent_throughput_mean": 12138.267214422725,
+      "test_agent_ratio_mean": 1.7425091424969332
+    },
+    {
+      "epoch": 133,
+      "train_reward_mean": 0.9925343271096317,
+      "train_delay_mean": 0.17840593582650582,
+      "train_loss_mean": 0.005298980165580299,
+      "critic_loss_mean": 115272.14539620536,
+      "policy_loss_mean": -3309.978937639509
+    },
+    {
+      "epoch": 134,
+      "train_reward_mean": 0.9916715175536422,
+      "train_delay_mean": 0.19949407604769093,
+      "train_loss_mean": 0.00633710941661171,
+      "critic_loss_mean": 125338.20089285714,
+      "policy_loss_mean": -3468.7414934430803
+    },
+    {
+      "epoch": 135,
+      "train_reward_mean": 0.9915341760755012,
+      "train_delay_mean": 0.2013556964805639,
+      "train_loss_mean": 0.006449732655772028,
+      "critic_loss_mean": 140024.77145647322,
+      "policy_loss_mean": -3646.771986607143
+    },
+    {
+      "epoch": 136,
+      "train_reward_mean": 0.9913730137659121,
+      "train_delay_mean": 0.20048535573009724,
+      "train_loss_mean": 0.0064929303120157215,
+      "critic_loss_mean": 149203.7872767857,
+      "policy_loss_mean": -3810.3709263392857
+    },
+    {
+      "epoch": 137,
+      "train_reward_mean": 0.9908222956417707,
+      "train_delay_mean": 0.2025678004814012,
+      "train_loss_mean": 0.006585772186605099,
+      "critic_loss_mean": 175589.98514229912,
+      "policy_loss_mean": -3997.4428693498885
+    },
+    {
+      "epoch": 138,
+      "train_reward_mean": 0.9913201809117272,
+      "train_delay_mean": 0.1881223684694017,
+      "train_loss_mean": 0.005674560450505465,
+      "critic_loss_mean": 182370.3738420759,
+      "policy_loss_mean": -4194.070779854911,
+      "test_agent_reward_mean": 0.9896317697699791,
+      "test_agent_delay_mean": 0.21720591085569993,
+      "test_agent_loss_fraction_mean": 0.008533822162686744,
+      "test_agent_throughput_mean": 12220.330048762069,
+      "test_agent_ratio_mean": 1.728769449100991
+    },
+    {
+      "epoch": 139,
+      "train_reward_mean": 0.9919331095803037,
+      "train_delay_mean": 0.1721127635653144,
+      "train_loss_mean": 0.005093134352853283,
+      "critic_loss_mean": 205578.35697544643,
+      "policy_loss_mean": -4378.549647739956
+    },
+    {
+      "epoch": 140,
+      "train_reward_mean": 0.9920517811497258,
+      "train_delay_mean": 0.16951862977798754,
+      "train_loss_mean": 0.005118524558308409,
+      "critic_loss_mean": 235149.47561383928,
+      "policy_loss_mean": -4591.725052315848
+    },
+    {
+      "epoch": 141,
+      "train_reward_mean": 0.9918160399788714,
+      "train_delay_mean": 0.18203662345105673,
+      "train_loss_mean": 0.00568458421195895,
+      "critic_loss_mean": 251061.34185267857,
+      "policy_loss_mean": -4816.541929408482
+    },
+    {
+      "epoch": 142,
+      "train_reward_mean": 0.9908376590460406,
+      "train_delay_mean": 0.19416290888947663,
+      "train_loss_mean": 0.006200297865595339,
+      "critic_loss_mean": 261557.79854910713,
+      "policy_loss_mean": -5056.659702845982
+    },
+    {
+      "epoch": 143,
+      "train_reward_mean": 0.9906988749332744,
+      "train_delay_mean": 0.19760897522211812,
+      "train_loss_mean": 0.006347495592382876,
+      "critic_loss_mean": 268850.45856584824,
+      "policy_loss_mean": -5299.529596819197
+    },
+    {
+      "epoch": 144,
+      "train_reward_mean": 0.9934099515318199,
+      "train_delay_mean": 0.14673239985119563,
+      "train_loss_mean": 0.00399045909098622,
+      "critic_loss_mean": 333910.9361886161,
+      "policy_loss_mean": -5551.503076171875,
+      "test_agent_reward_mean": 0.9943742475364415,
+      "test_agent_delay_mean": 0.11672196268041168,
+      "test_agent_loss_fraction_mean": 0.006343695478204328,
+      "test_agent_throughput_mean": 12024.53660558612,
+      "test_agent_ratio_mean": 1.657211382251605
+    },
+    {
+      "epoch": 145,
+      "train_reward_mean": 0.9930351727729124,
+      "train_delay_mean": 0.150527116435125,
+      "train_loss_mean": 0.0043607598920547075,
+      "critic_loss_mean": 395096.4991629464,
+      "policy_loss_mean": -5786.152172851563
+    },
+    {
+      "epoch": 146,
+      "train_reward_mean": 0.9921161695651496,
+      "train_delay_mean": 0.16488154824812637,
+      "train_loss_mean": 0.004919903681967124,
+      "critic_loss_mean": 414371.6944754464,
+      "policy_loss_mean": -6065.141217912947
+    },
+    {
+      "epoch": 147,
+      "train_reward_mean": 0.9911226990795228,
+      "train_delay_mean": 0.18438404400637226,
+      "train_loss_mean": 0.005800189401905487,
+      "critic_loss_mean": 438814.1622767857,
+      "policy_loss_mean": -6363.899487304688
+    },
+    {
+      "epoch": 148,
+      "train_reward_mean": 0.991145410416063,
+      "train_delay_mean": 0.18429327477198199,
+      "train_loss_mean": 0.005890832164307642,
+      "critic_loss_mean": 473431.13091517857,
+      "policy_loss_mean": -6655.646153041294
+    },
+    {
+      "epoch": 149,
+      "train_reward_mean": 0.9937099628300917,
+      "train_delay_mean": 0.1310471855350807,
+      "train_loss_mean": 0.0039291382082960805,
+      "critic_loss_mean": 551449.6522321429,
+      "policy_loss_mean": -6972.4193150111605
+    },
+    {
+      "epoch": 150,
+      "train_reward_mean": 0.992999604795014,
+      "train_delay_mean": 0.14543426892554612,
+      "train_loss_mean": 0.004558531033364329,
+      "critic_loss_mean": 557525.07734375,
+      "policy_loss_mean": -7316.824473353795,
+      "test_agent_reward_mean": 0.9913999966647964,
+      "test_agent_delay_mean": 0.1773727947460386,
+      "test_agent_loss_fraction_mean": 0.006182275716318018,
+      "test_agent_throughput_mean": 11992.55343175251,
+      "test_agent_ratio_mean": 1.725139713691874
+    },
+    {
+      "epoch": 151,
+      "train_reward_mean": 0.991522583907784,
+      "train_delay_mean": 0.17551696313327797,
+      "train_loss_mean": 0.005791527512185586,
+      "critic_loss_mean": 632038.4487165179,
+      "policy_loss_mean": -7636.858471679688
+    },
+    {
+      "epoch": 152,
+      "train_reward_mean": 0.9914946418119216,
+      "train_delay_mean": 0.1757304504599315,
+      "train_loss_mean": 0.005974879173814559,
+      "critic_loss_mean": 707061.7741629464,
+      "policy_loss_mean": -7990.016322544643
+    },
+    {
+      "epoch": 153,
+      "train_reward_mean": 0.9903802466943388,
+      "train_delay_mean": 0.19912842952296453,
+      "train_loss_mean": 0.006589739771279186,
+      "critic_loss_mean": 786507.9625,
+      "policy_loss_mean": -8335.55098702567
+    },
+    {
+      "epoch": 154,
+      "train_reward_mean": 0.9903640958647243,
+      "train_delay_mean": 0.1993243018999674,
+      "train_loss_mean": 0.006663105497772843,
+      "critic_loss_mean": 809511.1546316964,
+      "policy_loss_mean": -8722.272746930803
+    },
+    {
+      "epoch": 155,
+      "train_reward_mean": 0.9901808819495199,
+      "train_delay_mean": 0.20335285911250547,
+      "train_loss_mean": 0.0066823939041716586,
+      "critic_loss_mean": 896386.8526785715,
+      "policy_loss_mean": -9104.524637276785
+    },
+    {
+      "epoch": 156,
+      "train_reward_mean": 0.9906507282496648,
+      "train_delay_mean": 0.19443633029609916,
+      "train_loss_mean": 0.0059963688701077334,
+      "critic_loss_mean": 1079873.1225446428,
+      "policy_loss_mean": -9499.304087611607,
+      "test_agent_reward_mean": 0.9892878651490877,
+      "test_agent_delay_mean": 0.21895210826707767,
+      "test_agent_loss_fraction_mean": 0.008592899788935626,
+      "test_agent_throughput_mean": 12179.484607070626,
+      "test_agent_ratio_mean": 1.72722448192981
+    },
+    {
+      "epoch": 157,
+      "train_reward_mean": 0.9902736717531293,
+      "train_delay_mean": 0.20383648526826065,
+      "train_loss_mean": 0.006643083059952776,
+      "critic_loss_mean": 1077936.4139508929,
+      "policy_loss_mean": -9905.237395368304
+    },
+    {
+      "epoch": 158,
+      "train_reward_mean": 0.9906453663474253,
+      "train_delay_mean": 0.19442001379560844,
+      "train_loss_mean": 0.006333692463398668,
+      "critic_loss_mean": 1243351.8229910715,
+      "policy_loss_mean": -10360.099162946428
+    },
+    {
+      "epoch": 159,
+      "train_reward_mean": 0.9918531283957981,
+      "train_delay_mean": 0.1747051676206604,
+      "train_loss_mean": 0.005432857216469731,
+      "critic_loss_mean": 1261698.6650669642,
+      "policy_loss_mean": -10802.20837751116
+    },
+    {
+      "epoch": 160,
+      "train_reward_mean": 0.9930645554899968,
+      "train_delay_mean": 0.1572328580284533,
+      "train_loss_mean": 0.004326468361262976,
+      "critic_loss_mean": 1493602.1597098215,
+      "policy_loss_mean": -11271.551422991071
+    },
+    {
+      "epoch": 161,
+      "train_reward_mean": 0.9929954341475845,
+      "train_delay_mean": 0.15707740697975978,
+      "train_loss_mean": 0.004485715962279129,
+      "critic_loss_mean": 1538596.159263393,
+      "policy_loss_mean": -11767.131961495536
+    },
+    {
+      "epoch": 162,
+      "train_reward_mean": 0.9928452453847147,
+      "train_delay_mean": 0.15997427614007748,
+      "train_loss_mean": 0.00479102829273798,
+      "critic_loss_mean": 1654683.2808035715,
+      "policy_loss_mean": -12228.71413922991,
+      "test_agent_reward_mean": 0.9896582696475859,
+      "test_agent_delay_mean": 0.21745355004943023,
+      "test_agent_loss_fraction_mean": 0.008051106912933799,
+      "test_agent_throughput_mean": 12032.476709646124,
+      "test_agent_ratio_mean": 1.728834250376159
+    },
+    {
+      "epoch": 163,
+      "train_reward_mean": 0.9920260677805048,
+      "train_delay_mean": 0.170881050319691,
+      "train_loss_mean": 0.00509979894781005,
+      "critic_loss_mean": 1961599.7158482142,
+      "policy_loss_mean": -12650.964397321428
+    },
+    {
+      "epoch": 164,
+      "train_reward_mean": 0.9916483207880881,
+      "train_delay_mean": 0.17446090375972964,
+      "train_loss_mean": 0.005562891620955899,
+      "critic_loss_mean": 2007062.7267857143,
+      "policy_loss_mean": -13237.240652901786
+    },
+    {
+      "epoch": 165,
+      "train_reward_mean": 0.9915777415927705,
+      "train_delay_mean": 0.17823020869553777,
+      "train_loss_mean": 0.005606959013427996,
+      "critic_loss_mean": 2172502.4857142856,
+      "policy_loss_mean": -13812.677008928571
+    },
+    {
+      "epoch": 166,
+      "train_reward_mean": 0.9902587447958723,
+      "train_delay_mean": 0.20201368034659484,
+      "train_loss_mean": 0.006506395885308124,
+      "critic_loss_mean": 2438794.877455357,
+      "policy_loss_mean": -14389.771547154018
+    },
+    {
+      "epoch": 167,
+      "train_reward_mean": 0.9903174922262516,
+      "train_delay_mean": 0.20066257123772996,
+      "train_loss_mean": 0.006526920680504946,
+      "critic_loss_mean": 2577377.255357143,
+      "policy_loss_mean": -14951.808182198662
+    },
+    {
+      "epoch": 168,
+      "train_reward_mean": 0.9910038292286625,
+      "train_delay_mean": 0.18692529565356486,
+      "train_loss_mean": 0.005845324669270963,
+      "critic_loss_mean": 2819739.63125,
+      "policy_loss_mean": -15576.708133370536,
+      "test_agent_reward_mean": 0.991414880757427,
+      "test_agent_delay_mean": 0.1769355763852466,
+      "test_agent_loss_fraction_mean": 0.00623018305236881,
+      "test_agent_throughput_mean": 11858.80392936723,
+      "test_agent_ratio_mean": 1.6890869257128178
+    },
+    {
+      "epoch": 169,
+      "train_reward_mean": 0.9914127232268383,
+      "train_delay_mean": 0.17887947699883489,
+      "train_loss_mean": 0.005377003082141073,
+      "critic_loss_mean": 3383846.0205357145,
+      "policy_loss_mean": -16158.774190848215
+    },
+    {
+      "epoch": 170,
+      "train_reward_mean": 0.9913717887589257,
+      "train_delay_mean": 0.17976677059984447,
+      "train_loss_mean": 0.005387065640812222,
+      "critic_loss_mean": 3261618.427901786,
+      "policy_loss_mean": -16841.554575892857
+    },
+    {
+      "epoch": 171,
+      "train_reward_mean": 0.9912716634362364,
+      "train_delay_mean": 0.18225587717362968,
+      "train_loss_mean": 0.005268220909500877,
+      "critic_loss_mean": 3407238.9821428573,
+      "policy_loss_mean": -17495.96265345982
+    },
+    {
+      "epoch": 172,
+      "train_reward_mean": 0.9911723065364254,
+      "train_delay_mean": 0.18421763899898166,
+      "train_loss_mean": 0.005378997086204048,
+      "critic_loss_mean": 3657478.0205357145,
+      "policy_loss_mean": -18177.849288504465
+    },
+    {
+      "epoch": 173,
+      "train_reward_mean": 0.9907756180982545,
+      "train_delay_mean": 0.193522058012029,
+      "train_loss_mean": 0.005159014618217335,
+      "critic_loss_mean": 4180448.657142857,
+      "policy_loss_mean": -18909.7845703125
+    },
+    {
+      "epoch": 174,
+      "train_reward_mean": 0.99071728353459,
+      "train_delay_mean": 0.19535656200708199,
+      "train_loss_mean": 0.004916711750913824,
+      "critic_loss_mean": 4533708.586830357,
+      "policy_loss_mean": -19656.837974330356,
+      "test_agent_reward_mean": 0.9895252052184532,
+      "test_agent_delay_mean": 0.2150684702079727,
+      "test_agent_loss_fraction_mean": 0.007967136221881277,
+      "test_agent_throughput_mean": 12061.843777166452,
+      "test_agent_ratio_mean": 1.7177684991487723
+    },
+    {
+      "epoch": 175,
+      "train_reward_mean": 0.9905179387541929,
+      "train_delay_mean": 0.1987130305941407,
+      "train_loss_mean": 0.0053997486907082694,
+      "critic_loss_mean": 4804692.024553572,
+      "policy_loss_mean": -20307.20625
+    },
+    {
+      "epoch": 176,
+      "train_reward_mean": 0.9902616072646976,
+      "train_delay_mean": 0.20201467312027777,
+      "train_loss_mean": 0.006477324448899764,
+      "critic_loss_mean": 5787220.662053571,
+      "policy_loss_mean": -21047.88699776786
+    },
+    {
+      "epoch": 177,
+      "train_reward_mean": 0.9908041355363214,
+      "train_delay_mean": 0.1908530918134098,
+      "train_loss_mean": 0.0060747533207518465,
+      "critic_loss_mean": 5822544.913392857,
+      "policy_loss_mean": -21785.874483816966
+    },
+    {
+      "epoch": 178,
+      "train_reward_mean": 0.9955125558543104,
+      "train_delay_mean": 0.09374980038830229,
+      "train_loss_mean": 0.0026870312821590326,
+      "critic_loss_mean": 6113295.204017857,
+      "policy_loss_mean": -22662.07593470982
+    },
+    {
+      "epoch": 179,
+      "train_reward_mean": 0.9943864900115742,
+      "train_delay_mean": 0.11614136539354494,
+      "train_loss_mean": 0.0038714854571638446,
+      "critic_loss_mean": 6720333.966071429,
+      "policy_loss_mean": -23507.93306361607
+    },
+    {
+      "epoch": 180,
+      "train_reward_mean": 0.994423673846903,
+      "train_delay_mean": 0.11556601199004721,
+      "train_loss_mean": 0.0037585561354479095,
+      "critic_loss_mean": 6789793.369196429,
+      "policy_loss_mean": -24339.83783482143,
+      "test_agent_reward_mean": 0.9913855219441168,
+      "test_agent_delay_mean": 0.17781368774780118,
+      "test_agent_loss_fraction_mean": 0.006128621072322633,
+      "test_agent_throughput_mean": 11712.544165742902,
+      "test_agent_ratio_mean": 1.5760653097182205,
+      "final_agent_reward_mean": 0.9913855219441168,
+      "final_agent_delay_mean": 0.17781368774780118,
+      "final_agent_loss_fraction_mean": 0.006128621072322633,
+      "final_agent_throughput_mean": 11712.544165742902,
+      "final_agent_ratio_mean": 1.5760653097182205
+    }
+  ]
+}

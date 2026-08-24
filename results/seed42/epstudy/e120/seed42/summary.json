@@ -1,0 +1,9 @@
+{
+  "gravity": {
+    "final_reward": 0.9932042418274892,
+    "final_delay": 0.14194729210313053,
+    "final_loss": 0.005847680905532674,
+    "final_U_over_Ustar": 1.9114126565651997,
+    "wall_time_s": 360.8
+  }
+}
