@@ -1,4 +1,4 @@
-# Deep Learning Traffic Engineering - Deep RL for Intradomain Traffic Engineering
+# Deep RL for Intradomain Traffic Engineering
 
 Two research papers implemented from scratch in one repo, solving the same
 problem - learning link weights that route traffic well - with different RL
