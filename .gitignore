@@ -3,7 +3,6 @@ __pycache__/
 nohup.out
 *.log
 
-# run outputs: track ONLY plots (.png) and metrics (.json), drop the rest
 results/**
 !results/**/
 !results/**/*.png
