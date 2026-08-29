@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run all test suites
+        env:
+          PYTHONPATH: .:Learning-To-Route:SDN-DDPG
+        run: |
+          set -e
+          fail=0
+          for f in $(find . -name "test_*.py" -not -path "*/.venv/*"); do
+            echo "=== $f ==="
+            python3 "$f" || fail=1
+          done
+          exit $fail
