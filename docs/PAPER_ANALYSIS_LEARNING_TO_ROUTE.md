@@ -16,7 +16,8 @@ Constraints:
 
 **Demand Matrix (DM)**: n × n matrix D where D_{i,j} specifies traffic demand from source i to destination j. n = |V|.
 
-**Induced Flow**: A DM D and routing strategy R induce a multicommodity flow. Traffic from s to t splits at s per R_{s,(s,t)}, then at each intermediate v per R_{v,(s,t)}, etc.
+**Induced Flow**: A DM D and routing strategy R induce a multicommodity flow.
+                  Traffic from s to t splits at s per R_{s,(s,t)}, then at each intermediate v per R_{v,(s,t)}, etc.
 
 **Objective (Classical TE)**: Minimize maximum link utilization (congestion):
 ```
