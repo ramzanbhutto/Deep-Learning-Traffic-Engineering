@@ -12,7 +12,7 @@ and three classical baselines on identical traffic:
    IEEE Access 2022): DDPG agent, single-path SDN shortest-path forwarding,
    M/M/1/K queueing reward over end-to-end delay + packet loss.
 
-Built as a cross-course project for **AI + Computer Networks + Data Structures
+Built as a cross-domain project for **AI + Computer Networks + Data Structures
 & Algorithms.** Every design decision is
 traceable back to its paper - see `docs/` for both papers' analyses
 and architecture documents.
